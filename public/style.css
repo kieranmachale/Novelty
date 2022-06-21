@@ -1,0 +1,163 @@
+#list {
+    list-style: none;
+    padding: 0;
+  }
+  #new-task-title{
+    width:57em;
+    font-size:medium;
+  }
+  img {
+    width: 146px;
+    height:220px;
+    cursor:pointer;
+    margin-right:30px;
+    margin-bottom: 30px;
+    border-radius:6px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  img:hover {
+    transform: scale(1.075); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+  button {
+    margin-top:5px;
+    cursor:pointer;
+    background-color: cornflowerblue;
+    color:white;
+    border:none;
+    padding:9px;
+    border-radius:6px;
+    font-size:medium;
+  }
+  button:hover{
+    background-color: rgb(55, 118, 236);
+  }
+  input{
+    cursor:pointer;
+  }
+  #new-task-title{
+    cursor:text;
+    height:30px;
+  }
+  .container{
+    width:84%;
+    margin:auto;
+  }
+  h5 {
+    padding-top:20px;
+  }
+  li{
+    padding-bottom:4px;
+    display:inline;
+  }
+  hr{
+    margin-bottom:15px;
+    margin-right:35px;
+    margin-top:15px;
+  }
+  ul{
+    display:inline;
+  }
+  label {
+    margin-right:5px;
+  }
+  form{
+    display:inline;
+  }
+
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+
+  .nav-container {
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom:40px;
+  }
+
+  header {
+    background: #100309;
+    color:white;
+  }
+
+  header::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  .logo {
+    float: left;
+    padding: 10px; 
+    font-family:'Times New Roman', Times, serif;
+    color:black;
+  }
+
+  nav {
+    float: right;
+  }
+
+  nav ul {
+    margin-right: 30px;
+    padding: 0;
+    list-style: none;
+  }
+
+  nav li {
+    display: inline-block;
+    margin-left: 70px;
+    padding-top: 19px;
+
+    position: relative;
+  }
+
+  nav a {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(243, 237, 237);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  nav a:hover {
+    color: rgb(246, 238, 238);
+  }
+
+  nav a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background-color: rgb(241, 238, 238);
+
+    position: absolute;
+    top: 0;
+    width: 0%;
+
+    transition: all ease-in-out 250ms;
+  }
+
+  nav a:hover::before {
+    width: 100%;
+  }
+  h1{
+    margin-left:35px;
+  }
+  a{
+    color:white;
+  }
+
+  /* Grid CSS */
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    padding: 10px;
+    background-color:rgb(184, 200, 231);
+  }
+
+  .grid-container > div {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 20px;
+  }
+
+  .item1 {
+    grid-row: 1 / 4;
+  }
