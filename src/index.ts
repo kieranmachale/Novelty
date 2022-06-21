@@ -12,6 +12,9 @@ type Task = {
 const list = document.querySelector<HTMLUListElement>("#list")
 const form = document.getElementById("new-task-form") as HTMLFormElement | null
 const input = document.querySelector<HTMLInputElement>("#new-task-title")
+const bookCover = document.getElementById("bookCover") as HTMLImageElement
+const bookTitle = document.getElementById("title") as HTMLSpanElement
+const ISBN = document.getElementById("ISBN") as HTMLSpanElement
 const tasks: Task[] = loadTasks()
 tasks.forEach(addListItem)
 
@@ -72,22 +75,26 @@ function addListItem(task: Task) {
   /*item.append(label)*/
   item.append(cover)
   cover.addEventListener("click", () => {
-    item.remove()
+    /*item.remove()
     var arr = JSON.parse(localStorage["TASKS"])
     var newArray = arr.filter((el: { ISBN: any }) => el.ISBN !== task.ISBN)
-    localStorage.setItem('TASKS', JSON.stringify(newArray));
+    localStorage.setItem('TASKS', JSON.stringify(newArray));*/
+    bookCover.src = task.imageLink
+    bookTitle.innerHTML = task.title
+    ISBN.innerHTML = task.ISBN
   })
 
   cover.addEventListener("mouseover", () => {
     console.log(task)
-  })
-  /*
-  cover.addEventListener("mouseout", () => {
-    setTimeout(function () {
-      item.removeChild(label)  
-  }, 2000);
+
+    // TODO: Add active class to modal view
     
-  })*/
+
+    // TODO: Insert book data into modal view
+
+
+  })
+  
 
   list?.append(item)
 
