@@ -1,3 +1,4 @@
+@import url('http://fonts.cdnfonts.com/css/tiempos-headline');
 #list {
     list-style: none;
     padding: 0;
@@ -148,7 +149,7 @@
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 10px;
-    padding: 10px;
+    padding: 25px;
     background-color:rgb(184, 200, 231);
   }
 
@@ -156,8 +157,29 @@
     text-align: center;
     padding: 20px 0;
     font-size: 20px;
+    font-family: 'Tiempos Headline', sans-serif;  
   }
 
   .item1 {
     grid-row: 1 / 4;
   }
+
+#title {
+  font-style:italic;
+  font-size:xx-large;
+  display:inline-block;
+  width: 300px; word-wrap:break-word;
+}
+
+#releaseYear{
+  font-weight:lighter;
+  font-size:small;
+}
+
+#averageRating {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 5px solid black;
+  padding:12px;
+}

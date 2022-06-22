@@ -3,7 +3,10 @@ import { v4 as uuidV4 } from "uuid"
 type Task = {
   id: string
   title: string
+  author: string
   ISBN: string
+  pageCount: string,
+  averageRating: string,
   imageLink: string
   completed: boolean
   createdAt: Date
@@ -14,7 +17,10 @@ const form = document.getElementById("new-task-form") as HTMLFormElement | null
 const input = document.querySelector<HTMLInputElement>("#new-task-title")
 const bookCover = document.getElementById("bookCover") as HTMLImageElement
 const bookTitle = document.getElementById("title") as HTMLSpanElement
+const author = document.getElementById("author") as HTMLSpanElement
+const pageCount = document.getElementById("pageCount") as HTMLSpanElement
 const ISBN = document.getElementById("ISBN") as HTMLSpanElement
+const averageRating = document.getElementById("averageRating") as HTMLSpanElement
 const tasks: Task[] = loadTasks()
 tasks.forEach(addListItem)
 
@@ -32,6 +38,7 @@ form?.addEventListener("submit", e => {
   var isbn = input.value
   var url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn;
 
+
   fetch(url)
     .then(res => {
       return res.json();
@@ -40,7 +47,10 @@ form?.addEventListener("submit", e => {
       const newTask: Task = {
         id: uuidV4(),
         title: data.items[0].volumeInfo.title,
+        author: data.items[0].volumeInfo.authors[0],
         ISBN: input.value,
+        pageCount: data.items[0].volumeInfo.pageCount,
+        averageRating: data.items[0].volumeInfo.averageRating,
         imageLink: data.items[0].volumeInfo.imageLinks.thumbnail,
         completed: false,
         createdAt: new Date(),
@@ -81,23 +91,17 @@ function addListItem(task: Task) {
     localStorage.setItem('TASKS', JSON.stringify(newArray));*/
     bookCover.src = task.imageLink
     bookTitle.innerHTML = task.title
-    ISBN.innerHTML = task.ISBN
-  })
-
-  cover.addEventListener("mouseover", () => {
-    console.log(task)
-
-    // TODO: Add active class to modal view
-    
-
-    // TODO: Insert book data into modal view
-
-
+    author.innerHTML = task.author
+    pageCount.innerHTML = `Pages: ${task.pageCount}`
+    ISBN.innerHTML = `ISBN: ${task.ISBN}`
+    if(!task.averageRating) {
+      averageRating.innerHTML = `3.5`
+    } else {
+      if(task.averageRating.toString().length == 1) { averageRating.innerHTML = `${task.averageRating}.0`} else { averageRating.innerHTML = task.averageRating } 
+    }
   })
   
-
   list?.append(item)
-
 }
 
 function saveTasks() {
