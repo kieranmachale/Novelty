@@ -39,7 +39,13 @@ form?.addEventListener("submit", e => {
   var url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn;
 
 
-  fetch(url)
+  fetch(url, {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept' : 'application/json'
+      }
+    })
     .then(res => {
       return res.json();
     })
@@ -85,10 +91,12 @@ function addListItem(task: Task) {
   /*item.append(label)*/
   item.append(cover)
   cover.addEventListener("click", () => {
+
     /*item.remove()
     var arr = JSON.parse(localStorage["TASKS"])
     var newArray = arr.filter((el: { ISBN: any }) => el.ISBN !== task.ISBN)
     localStorage.setItem('TASKS', JSON.stringify(newArray));*/
+
     bookCover.src = task.imageLink
     bookTitle.innerHTML = task.title
     author.innerHTML = task.author
@@ -118,3 +126,22 @@ function clearTasks() {
   localStorage.clear();
   list!.innerHTML = " "
 }
+
+const sortBtn = document.querySelector("#sortBtn") as HTMLButtonElement
+sortBtn?.addEventListener("click", e => {
+  e.preventDefault()
+  let newArray = JSON.parse(localStorage["TASKS"])
+
+  // Sort array of objects in local storage
+  newArray.sort(function(a: { title: string }, b: { title: any }) {
+    return a.title.localeCompare(b.title);
+  });
+
+  // Replace local storage array with sorted array
+  localStorage.setItem('TASKS', JSON.stringify(newArray));
+
+  // Update the DOM
+  list!.innerHTML = " "
+  let sortedTasks = loadTasks()
+  sortedTasks.forEach(addListItem)
+});
